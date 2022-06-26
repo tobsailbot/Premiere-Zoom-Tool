@@ -1,4 +1,4 @@
-# Premiere-Zoom-Tool
+# Premiere Zoom Tool
 ### Easy Premiere zoom using an external app
 
 This tool makes it very easy for users to create zoom keyframes automation within Adobe Premiere.                    

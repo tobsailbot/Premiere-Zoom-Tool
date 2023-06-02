@@ -168,17 +168,16 @@ zoom.set(2) # set the default value
 # slider values stick to whole numbers
 def whole_number_only_duration(e=None):
     value = duration.get()
-    if round(value,1) != value:
-        float_sec = round(value,1)
-        duration.set(float_sec)
+    if int(value) != value:
+        duration.set(round(value))
 
 
 # crea un slider para el zoom scale
 style = ttk.Style()
 style.configure("TScale", background="grey25", foreground="grey25", troughcolor="grey25",)
-duration = ttk.Scale(window, from_=0.2, to=1.5, length=300, style="TScale", command=whole_number_only_duration)
+duration = ttk.Scale(window, from_=1, to=4, length=300, style="TScale", command=whole_number_only_duration)
 
-duration.set(0.6) # set the default value
+duration.set(2) # set the default value
 
 
 
@@ -190,9 +189,16 @@ def PosAndScale():
 
     b = 0.5  # base center position value
     scale_value = zoom.get() # get the scale value
-
     seconds_value = duration.get() # get the duration value
 
+    if seconds_value == 1:
+        sec = 0.2
+    if seconds_value == 2:
+        sec = 0.5
+    if seconds_value  == 3:
+        sec = 0.8
+    if seconds_value == 4:
+        sec = 1.5
 
     if scale_value == 1:
         s = 0.125
@@ -235,8 +241,8 @@ def PosAndScale():
     sel_clip = selected_clip[1]
 
     # pasa parametros a la funcion addFrames()
-    addFrames(sel_track, sel_clip,pos[0] , pos[1], sca, seconds_value)
-    print(scale_value)
+    addFrames(sel_track, sel_clip,pos[0] , pos[1], sca, sec)
+    print(sca)
     print('--- Frames Added ---')
     
 

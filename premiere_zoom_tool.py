@@ -59,7 +59,7 @@ def loopTracks():
 
 
 
-def addFrames(track,clip,i,j,s,sec): # t = track, c = clip, i = x, j = y, s = scale
+def addFrames(track,clip,i,j,sca,sec): # t = track, c = clip, i = x, j = y, s = scale
 
     project = pymiere.objects.app.project
 
@@ -96,7 +96,12 @@ def addFrames(track,clip,i,j,s,sec): # t = track, c = clip, i = x, j = y, s = sc
     position.addKey(clip.inPoint.seconds + sec) 
     # setear valores de las propiedades
     position.setValueAtKey(clip.inPoint.seconds + sec, [i, j], True)
-    scale.setValueAtKey(clip.inPoint.seconds + sec, s, True)
+
+    # setear valor de escala absoluta (125%, 150% etc..)
+    # scale.setValueAtKey(clip.inPoint.seconds + sec, sca, True)
+
+    # setear valor de escala relativa (% basado en la inicial)
+    scale.setValueAtKey(clip.inPoint.seconds + sec, actual_scale * (sca/100), True)
 
     # cambia interpolacion de frames a smooth curve (Premiere v22)
     # position.setInterpolationTypeAtKey(1)
@@ -220,7 +225,7 @@ def PosAndScale():
 
     # obtener valores del radialbutton = '0 0'
     button_value = v.get()
-
+    
     # convertir valores en una lista de strings = ['0','0']
     listRes = list(button_value.split(" "))
 
@@ -242,7 +247,8 @@ def PosAndScale():
 
     # pasa parametros a la funcion addFrames()
     addFrames(sel_track, sel_clip,pos[0] , pos[1], sca, sec)
-    print(sca)
+    # print an f string
+    print(f'{sca}%')
     print('--- Frames Added ---')
     
 

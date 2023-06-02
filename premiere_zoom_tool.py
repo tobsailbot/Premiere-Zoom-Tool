@@ -150,7 +150,7 @@ values = {"0": [0,0],
 # Loop is used to create multiple Radiobuttons rather than creating each button separately
 for (key, value) in values.items():
     i = int(key)
-    Radiobutton(positions_frame, text='', variable=v, width=10,height=4,
+    Radiobutton(positions_frame, text='', variable=v, width=7,height=3,
                 value=value, indicator=0, borderwidth=0,activebackground="grey20",selectcolor='gray40',
                 background="gray15").grid(row=str(value[0]),column=str(value[1]),pady=1,padx=1)
 
@@ -165,7 +165,7 @@ def whole_number_only_zoom(e=None):
 # crea un slider para el zoom scale
 styleW = ttk.Style()
 styleW.configure("TScale", background="grey25", foreground="grey25", troughcolor="grey25",)
-zoom = ttk.Scale(window, from_=1, to=4, length=300, style="TScale", command=whole_number_only_zoom)
+zoom = ttk.Scale(window, from_=1, to=4, length=250, style="TScale", command=whole_number_only_zoom)
        
 zoom.set(2) # set the default value
 
@@ -180,7 +180,7 @@ def whole_number_only_duration(e=None):
 # crea un slider para el zoom scale
 style = ttk.Style()
 style.configure("TScale", background="grey25", foreground="grey25", troughcolor="grey25",)
-duration = ttk.Scale(window, from_=1, to=4, length=300, style="TScale", command=whole_number_only_duration)
+duration = ttk.Scale(window, from_=1, to=4, length=250, style="TScale", command=whole_number_only_duration)
 
 duration.set(2) # set the default value
 
@@ -287,7 +287,7 @@ def RemoveFrames():
 # ------------------------------------------------------
 
 scale_name = Label(window, text="Zoom level:", anchor="w")
-scale_name.configure(bg="grey25",fg="grey75", width=43)
+scale_name.configure(bg="grey25",fg="grey75", width=40)
 scale_name.pack(pady=(6,1))
 
 zoom.pack()
@@ -297,7 +297,7 @@ scale_label.configure(bg="grey25",fg="grey75")
 scale_label.pack()
 
 duration_name = Label(window, text="Time (seconds):", anchor="w")
-duration_name.configure(bg="grey25",fg="grey75", width=43)
+duration_name.configure(bg="grey25",fg="grey75", width=40)
 duration_name.pack(pady=(7,1))
 
 duration.pack()

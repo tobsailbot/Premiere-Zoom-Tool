@@ -87,7 +87,8 @@ def addFrames(track,clip,i,j,s,sec): # t = track, c = clip, i = x, j = y, s = sc
     position.setValueAtKey(clip.inPoint.seconds + sec, [i, j], True)
     scale.setValueAtKey(clip.inPoint.seconds + sec, s, True)
 
-    position.setInterpolationTypeAtKey(1)
+    # cambia interpolacion de frames a smooth curve (Premiere v22)
+    # position.setInterpolationTypeAtKey(1)
     
     # obtiene el valor actual del parametro
     actual_scale = scale.getValue()

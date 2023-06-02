@@ -80,6 +80,17 @@ def addFrames(track,clip,i,j,s,sec): # t = track, c = clip, i = x, j = y, s = sc
     position.setTimeVarying(True)
     scale.setTimeVarying(True)
 
+    # obtiene el valor actual del parametro
+    actual_scale = scale.getValue()
+    actual_position = position.getValue()
+
+    # add keyframes inpoint 0s
+    scale.addKey(clip.inPoint.seconds)
+    position.addKey(clip.inPoint.seconds)
+    # setear valor inicial en inpoint
+    position.setValueAtKey(clip.inPoint.seconds,actual_position, True)
+    scale.setValueAtKey(clip.inPoint.seconds, actual_scale, True)
+
     # add frames inpoint +sec (segundos)
     scale.addKey(clip.inPoint.seconds + sec)
     position.addKey(clip.inPoint.seconds + sec) 
@@ -90,16 +101,7 @@ def addFrames(track,clip,i,j,s,sec): # t = track, c = clip, i = x, j = y, s = sc
     # cambia interpolacion de frames a smooth curve (Premiere v22)
     # position.setInterpolationTypeAtKey(1)
     
-    # obtiene el valor actual del parametro
-    actual_scale = scale.getValue()
-    # actual_position = position.getValue()
 
-    # add keyframes inpoint 0s
-    scale.addKey(clip.inPoint.seconds)
-    position.addKey(clip.inPoint.seconds)
-
-    position.setValueAtKey(clip.inPoint.seconds,[0.5,0.5], True)
-    scale.setValueAtKey(clip.inPoint.seconds, actual_scale, True)
 
 
 #----------------------------------------------------------
@@ -259,6 +261,10 @@ def RemoveFrames():
     # seleccioanr la propiedad : 0 = position,  1 = scale
     position = components.properties[0]
     scale = components.properties[1]
+
+    # desactiva el relojito
+    position.setTimeVarying(False)
+    scale.setTimeVarying(False)
 
     # remove keyframes
     position.removeKeyRange(clip.inPoint.seconds,clip.outPoint.seconds,True)

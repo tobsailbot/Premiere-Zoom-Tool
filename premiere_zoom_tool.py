@@ -165,7 +165,7 @@ def whole_number_only_zoom(e=None):
 # crea un slider para el zoom scale
 styleW = ttk.Style()
 styleW.configure("TScale", background="grey25", foreground="grey25", troughcolor="grey25",)
-zoom = ttk.Scale(window, from_=1, to=4, length=250, style="TScale", command=whole_number_only_zoom)
+zoom = ttk.Scale(window, from_=1, to=4, length=275, style="TScale", command=whole_number_only_zoom)
        
 zoom.set(2) # set the default value
 
@@ -180,7 +180,7 @@ def whole_number_only_duration(e=None):
 # crea un slider para el zoom scale
 style = ttk.Style()
 style.configure("TScale", background="grey25", foreground="grey25", troughcolor="grey25",)
-duration = ttk.Scale(window, from_=1, to=4, length=250, style="TScale", command=whole_number_only_duration)
+duration = ttk.Scale(window, from_=1, to=4, length=275, style="TScale", command=whole_number_only_duration)
 
 duration.set(2) # set the default value
 
@@ -287,26 +287,26 @@ def RemoveFrames():
 # ------------------------------------------------------
 
 scale_name = Label(window, text="Zoom level:", anchor="w")
-scale_name.configure(bg="grey25",fg="grey75", width=40)
+scale_name.configure(bg="grey25",fg="grey75", width=39)
 scale_name.pack(pady=(6,1))
 
 zoom.pack()
 
-scale_label = Label(window, text="125%                   150%                      175%                    200%")
+scale_label = Label(window, text="125%                 150%                    175%                  200%")
 scale_label.configure(bg="grey25",fg="grey75")
 scale_label.pack()
 
 duration_name = Label(window, text="Time (seconds):", anchor="w")
-duration_name.configure(bg="grey25",fg="grey75", width=40)
+duration_name.configure(bg="grey25",fg="grey75", width=39)
 duration_name.pack(pady=(7,1))
 
 duration.pack()
 
-duration_label = Label(window, text="0.2                         0.5                          0.8                          1.5")
+duration_label = Label(window, text="0.2                       0.5                        0.8                        1.5")
 duration_label.configure(bg="grey25",fg="grey75")
 duration_label.pack()
 
-buttons_frame= Frame(window)
+buttons_frame = Frame(window)
 buttons_frame.pack(pady=(20,15))
 buttons_frame.configure(bg="grey25")
 
@@ -319,18 +319,22 @@ def onLeaveButton(e):
     return
 
 applyBtn = Button(buttons_frame)
-applyBtn.configure(command=PosAndScale, text='Apply',bg="grey40",fg="grey93",width=10,height=2,bd=0,
-                   activebackground="grey70",activeforeground="white")
-applyBtn.grid(column= 1, row=0,padx=(50,5))
+applyBtn.configure(command=PosAndScale, text='Apply', bg="grey40", fg="grey93", width=10, height=2, bd=0,
+                   activebackground="grey70", activeforeground="white", highlightbackground="light grey",
+                   cursor="hand2")
+applyBtn.grid(column=1, row=0, padx=(20, 5))
 applyBtn.bind("<Enter>", onEnterButton)
 applyBtn.bind("<Leave>", onLeaveButton)
 
 removeBtn = Button(buttons_frame)
-removeBtn.configure(command= RemoveFrames,text='Remove',bg="grey40",fg="grey93",width=10,bd=0,height=2,
-                    activebackground="grey70",activeforeground="white")
-removeBtn.grid(column= 0, row=0,padx=(5,40))
+removeBtn.configure(command=RemoveFrames, text='Remove', bg="grey40", fg="grey93", width=10, bd=0, height=2,
+                    activebackground="grey70", activeforeground="white", highlightbackground="white",
+                    cursor="hand2")
+removeBtn.grid(column=0, row=0, padx=(5, 40))
 removeBtn.bind("<Enter>", onEnterButton)
 removeBtn.bind("<Leave>", onLeaveButton)
+
+
 
 
 

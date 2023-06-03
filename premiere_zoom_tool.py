@@ -310,29 +310,38 @@ buttons_frame = Frame(window)
 buttons_frame.pack(pady=(20,15))
 buttons_frame.configure(bg="grey25")
 
-def onEnterButton(e):
+def onEnterApply(e):
+    e.widget['background'] = '#307cff'
+    return
+
+def onLeaveApply(e):
+    e.widget['background'] = '#2663cc'
+    return
+
+def onEnterRemove(e):
     e.widget['background'] = 'grey45'
     return
 
-def onLeaveButton(e):
+def onLeaveRemove(e):
     e.widget['background'] = 'grey40'
     return
 
+
 applyBtn = Button(buttons_frame)
-applyBtn.configure(command=PosAndScale, text='Apply', bg="grey40", fg="grey93", width=10, height=2, bd=0,
+applyBtn.configure(command=PosAndScale, text='Apply', bg="#2663cc", fg="grey93", width=10, height=2, bd=0,
                    activebackground="grey70", activeforeground="white", highlightbackground="light grey",
                    cursor="hand2")
 applyBtn.grid(column=1, row=0, padx=(20, 5))
-applyBtn.bind("<Enter>", onEnterButton)
-applyBtn.bind("<Leave>", onLeaveButton)
+applyBtn.bind("<Enter>", onEnterApply)
+applyBtn.bind("<Leave>", onLeaveApply)
 
 removeBtn = Button(buttons_frame)
 removeBtn.configure(command=RemoveFrames, text='Remove', bg="grey40", fg="grey93", width=10, bd=0, height=2,
                     activebackground="grey70", activeforeground="white", highlightbackground="white",
                     cursor="hand2")
 removeBtn.grid(column=0, row=0, padx=(5, 40))
-removeBtn.bind("<Enter>", onEnterButton)
-removeBtn.bind("<Leave>", onLeaveButton)
+removeBtn.bind("<Enter>", onEnterRemove)
+removeBtn.bind("<Leave>", onLeaveRemove)
 
 
 
